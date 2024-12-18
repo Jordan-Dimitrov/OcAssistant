@@ -1,0 +1,3 @@
+[submodule "OcAssistant/vendor/glfw"]
+	path = OcAssistant/vendor/glfw
+	url = https://github.com/infirit89/glfw
