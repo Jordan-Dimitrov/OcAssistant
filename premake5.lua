@@ -19,19 +19,22 @@ project "OcAssistant"
         "src",
         "external/glad/include",
         "external/glfw/include",
+        "external/nvapi",
     }
 
     links { 
         "glfw", 
         "opengl32",
+        "nvapi64",
     }
 
     libdirs {
-        "external/nvapi/x86/nvapi.lib"
+        "external/nvapi/amd64",
     }
 
     filter "system:windows"
         systemversion "latest"
+        defines { "WIN32", "_WINDOWS" }
 
     filter "configurations:Debug"
         defines { "DEBUG" }
@@ -40,6 +43,7 @@ project "OcAssistant"
     filter "configurations:Release"
         defines { "NDEBUG" }
         optimize "On"
+
 
 project "GLFW"
     kind "StaticLib"
