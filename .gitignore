@@ -82,6 +82,8 @@ StyleCopReport.xml
 *.pgc
 *.pgd
 *.rsp
+# but not Directory.Build.rsp, as it configures directory-level build defaults
+!Directory.Build.rsp
 *.sbr
 *.tlb
 *.tli
@@ -396,44 +398,3 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-
-bin-int/
-
-# Ignore build output directories
-/bin/
-/bin-int/
-
-# Ignore external dependencies (except for submodules)
-/external/glad/src/
-/external/glfw/src/
-/external/nvapi/
-
-# Ignore IDE-specific files (adjust if you're using a different IDE)
-.vscode/
-.idea/
-.vs/
-*.user
-*.suo
-
-# Ignore compiled files (e.g., object files)
-*.o
-*.obj
-
-# Ignore Visual Studio specific files
-*.vcxproj*
-*.vcxproj.user
-*.suo
-*.db
-*.log
-
-# Ignore CMake build files (if applicable)
-CMakeFiles/
-CMakeCache.txt
-Makefile
-cmake_install.cmake
-*.cmake
-
-# Ignore other temporary files
-*.tmp
-*.bak
-*.swp

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="external">
+      <UniqueIdentifier>{2839F3DC-1406-4EE8-3D1F-3C90294B8376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\glad">
+      <UniqueIdentifier>{2F05BA43-9BC5-357A-6400-7FF7D07F7A56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\glad\include">
+      <UniqueIdentifier>{A2EB5429-0E58-1024-D74B-A8814377328C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\glad\include\KHR">
+      <UniqueIdentifier>{16FB605B-82BD-94E5-CB6D-2372376F6DC3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\glad\include\glad">
+      <UniqueIdentifier>{E95390C7-D563-3C98-3E1D-A1B62A4C2B31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\glad\src">
+      <UniqueIdentifier>{C6C2A2EE-32D9-A084-7B50-2CA6E7A5710C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="external\glad\include\KHR\khrplatform.h">
+      <Filter>external\glad\include\KHR</Filter>
+    </ClInclude>
+    <ClInclude Include="external\glad\include\glad\glad.h">
+      <Filter>external\glad\include\glad</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="external\glad\src\glad.c">
+      <Filter>external\glad\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
