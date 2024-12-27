@@ -61,7 +61,7 @@ GpuInfo GetGpuInfo() {
         NV_DISPLAY_DRIVER_MEMORY_INFO memoryInfo = { 0 };
         memoryInfo.version = NV_DISPLAY_DRIVER_MEMORY_INFO_VER;
         if (NvAPI_GPU_GetMemoryInfo(gpuHandle, &memoryInfo) == NVAPI_OK) {
-            gpuInfo.memorySizeMB = memoryInfo.availableDedicatedVideoMemory / 1024; 
+            gpuInfo.memorySizeMB = memoryInfo.availableDedicatedVideoMemory / 1024;
         }
     }
 

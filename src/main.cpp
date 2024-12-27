@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cassert>
 #include <nvapi.h>
-#include "../GPUInfo.h"
+#include "gpu_info.h"
 
 int main()
 {
