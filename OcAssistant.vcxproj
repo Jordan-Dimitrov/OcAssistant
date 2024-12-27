@@ -95,9 +95,11 @@
   <ItemGroup>
     <ClInclude Include="external\glad\include\KHR\khrplatform.h" />
     <ClInclude Include="external\glad\include\glad\glad.h" />
+    <ClInclude Include="GPUInfo.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\glad\src\glad.c" />
+    <ClCompile Include="GPUInfo.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>

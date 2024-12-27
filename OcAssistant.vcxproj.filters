@@ -30,12 +30,18 @@
     <ClInclude Include="external\glad\include\glad\glad.h">
       <Filter>external\glad\include\glad</Filter>
     </ClInclude>
+    <ClInclude Include="GPUInfo.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\glad\src\glad.c">
       <Filter>external\glad\src</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="GPUInfo.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
