@@ -5,6 +5,7 @@ workspace "OcAssistant"
 project "OcAssistant"
     kind "ConsoleApp"
     language "C++"
+    cppdialect "C++17"
     targetdir "bin/%{cfg.buildcfg}"
     objdir "bin-int/%{cfg.buildcfg}"
 
@@ -13,6 +14,8 @@ project "OcAssistant"
         "src/**.cpp",
         "external/glad/include/**.h",
         "external/glad/src/**.c",
+        "external/stb/stb_image.h",
+        "external/stb/stb_image_write.h",
     }
 
     includedirs {
@@ -20,6 +23,7 @@ project "OcAssistant"
         "external/glad/include",
         "external/glfw/include",
         "external/nvapi",
+        "external/stb",
     }
 
     links { 

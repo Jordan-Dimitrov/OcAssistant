@@ -59,9 +59,10 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_WINDOWS;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;external\glad\include;external\glfw\include;external\nvapi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;external\glad\include;external\glfw\include;external\nvapi;external\stb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
@@ -76,12 +77,13 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;external\glad\include;external\glfw\include;external\nvapi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;external\glad\include;external\glfw\include;external\nvapi;external\stb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
@@ -95,15 +97,32 @@
   <ItemGroup>
     <ClInclude Include="external\glad\include\KHR\khrplatform.h" />
     <ClInclude Include="external\glad\include\glad\glad.h" />
+    <ClInclude Include="external\stb\stb_image.h" />
+    <ClInclude Include="external\stb\stb_image_write.h" />
+    <ClInclude Include="src\Headers\EBO.h" />
+    <ClInclude Include="src\Headers\Texture.h" />
+    <ClInclude Include="src\Headers\VAO.h" />
+    <ClInclude Include="src\Headers\VBO.h" />
+    <ClInclude Include="src\Headers\shaderClass.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\glad\src\glad.c" />
+    <ClCompile Include="src\EBO.cpp" />
+    <ClCompile Include="src\stb.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
+    <ClCompile Include="src\VAO.cpp" />
+    <ClCompile Include="src\VBO.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\shaderClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="GLFW.vcxproj">
       <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\Resources\default.frag" />
+    <None Include="src\Resources\default.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

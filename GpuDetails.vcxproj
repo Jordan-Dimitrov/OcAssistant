@@ -95,10 +95,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GpuDetails\GpuDetails.cpp" />
+    <ClInclude Include="GpuDetails\GpuDetails.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GpuDetails\GpuDetails.h" />
+    <ClCompile Include="GpuDetails\GpuDetails.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
