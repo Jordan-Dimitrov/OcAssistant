@@ -3,7 +3,6 @@
 #include <iostream>
 #include <cassert>
 #include <nvapi.h>
-#include "gpu_info.h"
 
 int main()
 {
@@ -15,16 +14,6 @@ int main()
 
 	int gladSuccess = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 	glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
-
-	GpuInfo info = GetGpuInfo();
-
-	std::cout << "GPU Name: " << info.name << std::endl;
-	std::cout << "Core Count: " << info.coreCount << std::endl;
-	std::cout << "VR Ready: " << (info.isVrReady ? "Yes" : "No") << std::endl;
-	std::cout << "Power Utilization: " << info.powerUtilization << "%" << std::endl;
-	std::cout << "Memory Size: " << info.memorySizeMB << " MB" << std::endl;
-	std::cout << "GPU Clock: " << info.gpuClockKHz << " kHz" << std::endl;
-	std::cout << "VRAM Clock: " << info.vramClockKHz << " kHz" << std::endl;
 
 	while (!glfwWindowShouldClose(window))
 	{

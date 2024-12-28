@@ -58,3 +58,43 @@ project "GLFW"
     filter "system:windows"
         systemversion "latest"
         defines { "_GLFW_WIN32" }
+
+project "GpuDetails"
+    kind "SharedLib"
+    language "C++"
+    targetdir "bin/%{cfg.buildcfg}"
+    objdir "bin-int/%{cfg.buildcfg}"
+
+    files {
+        "GpuDetails/**.h",
+        "GpuDetails/**.cpp"
+    }
+
+    includedirs {
+        "GpuDetails",
+        "external/nvapi"
+    }
+
+    links { 
+        "nvapi64"
+    }
+
+    libdirs {
+        "external/nvapi/amd64"
+    }
+
+    filter "system:windows"
+        systemversion "latest"
+        defines { 
+            "WIN32", 
+            "_WINDOWS",
+            "GPU_DETAILS_EXPORTS"
+        }
+
+    filter "configurations:Debug"
+        defines { "DEBUG" }
+        symbols "On"
+
+    filter "configurations:Release"
+        defines { "NDEBUG" }
+        optimize "On"
