@@ -5,8 +5,72 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OcAssistantApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="OcAssistant" Height="450" Width="800">
+
+    <Window.Resources>
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,10,0,5"/>
+            <Setter Property="Foreground" Value="#333333"/>
+        </Style>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="140"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="#4CAF50"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,20,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderBrush" Value="#388E3C"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ButtonStyleStop" TargetType="Button">
+            <Setter Property="Width" Value="140"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="#F44336"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,10,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderBrush" Value="#D32F2F"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <Label x:Name="Test" Height="180" Width="260"></Label>
+        <Label x:Name="GpuName" Style="{StaticResource LabelStyle}" Height="30" Width="260" VerticalAlignment="Top">Name: </Label>
+        <Label x:Name="CoreCount" Style="{StaticResource LabelStyle}" Height="30" Width="260" VerticalAlignment="Top" Margin="0,40,0,0">Cores: </Label>
+        <Label x:Name="IsVrReady" Style="{StaticResource LabelStyle}" Height="30" Width="260" VerticalAlignment="Top" Margin="0,80,0,0">VR Ready: </Label>
+        <Label x:Name="MemorySize" Style="{StaticResource LabelStyle}" Height="30" Width="260" VerticalAlignment="Top" Margin="0,120,0,0">Memory Size: </Label>
+        <Label x:Name="GpuClock" Style="{StaticResource LabelStyle}" Height="30" Width="260" VerticalAlignment="Top" Margin="0,160,0,0">GPU Clock: </Label>
+        <Label x:Name="VramClock" Style="{StaticResource LabelStyle}" Height="30" Width="260" VerticalAlignment="Top" Margin="0,200,0,0">VRAM Clock: </Label>
+
+        <Button Content="Start Benchmark" Style="{StaticResource ButtonStyle}" Click="StartBenchmarkClick" Margin="0,200,0,0"/>
+        <Button Content="Stop Benchmark" Style="{StaticResource ButtonStyleStop}" Click="StopBenchmarkClick" Margin="0,320,0,0"/>
     </Grid>
 </Window>

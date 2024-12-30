@@ -13,15 +13,24 @@ namespace fs = std::filesystem;
 #include <vector>
 #include <thread>
 #include <atomic>
+#include <windows.h>
 
-void handleCLIInput(std::atomic<bool>& stopFlag) {
-    std::string input;
+void handleCLIInput(std::atomic<bool>& stopFlag, std::atomic<bool>& runFlag, HANDLE hPipe) {
+    char buffer[128];
+    DWORD bytesRead;
     while (!stopFlag) {
-        std::cin >> input;
-        if (input == "stop") {
-            stopFlag = true;
+        if (ReadFile(hPipe, buffer, sizeof(buffer) - 1, &bytesRead, NULL)) {
+            buffer[bytesRead] = '\0';
+            std::string input(buffer);
+            if (input == "stop") {
+                stopFlag = true;
+            }
+            else if (input == "start") {
+                runFlag = true;
+            }
         }
     }
+    CloseHandle(hPipe);
 }
 
 GLfloat vertices[] = {
@@ -39,8 +48,23 @@ GLuint indices[] = {
 int main()
 {
     std::atomic<bool> stopFlag(false);
+    std::atomic<bool> runFlag(false);
 
-    std::thread cliThread(handleCLIInput, std::ref(stopFlag));
+    HANDLE hPipe = CreateNamedPipe(TEXT("\\\\.\\pipe\\BenchmarkPipe"),
+        PIPE_ACCESS_DUPLEX,
+        PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE | PIPE_WAIT,
+        1,
+        1024 * 16,
+        1024 * 16,
+        NMPWAIT_USE_DEFAULT_WAIT,
+        NULL);
+
+    if (hPipe == INVALID_HANDLE_VALUE) {
+        std::cerr << "Failed to create named pipe." << std::endl;
+        return -1;
+    }
+
+    std::thread cliThread(handleCLIInput, std::ref(stopFlag), std::ref(runFlag), hPipe);
 
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -52,6 +76,8 @@ int main()
     {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
+        stopFlag = true;
+        cliThread.join();
         return -1;
     }
     glfwMakeContextCurrent(window);
@@ -94,18 +120,20 @@ int main()
 
     while (!glfwWindowShouldClose(window) && !stopFlag)
     {
-        glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        if (runFlag) {
+            glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+            glClear(GL_COLOR_BUFFER_BIT);
 
-        shaderProgram.Activate();
-        glUniform1f(uniScale, 0.5f);
-        ryuk.Bind();
-        VAO1.Bind();
+            shaderProgram.Activate();
+            glUniform1f(uniScale, 0.5f);
+            ryuk.Bind();
+            VAO1.Bind();
 
-        glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0, instanceCount);
+            glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0, instanceCount);
 
-        glfwSwapBuffers(window);
-        glfwPollEvents();
+            glfwSwapBuffers(window);
+            glfwPollEvents();
+        }
     }
 
     stopFlag = true;
