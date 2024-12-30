@@ -9,7 +9,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GpuDetails", "GpuDetails.vc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OcAssistant", "OcAssistant.vcxproj", "{F16600EA-5D1C-79DF-E610-73B652C56FE3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OcAssistantApp", "OcAssistantApp\OcAssistantApp.csproj", "{FDFF2A85-B3B2-43B3-A62C-E02DFDCEE4BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OcAssistantApp", "OcAssistantApp\OcAssistantApp.csproj", "{77AD2EFF-EA1F-43CF-A90C-9F21AACA128F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,19 +43,16 @@ Global
 		{F16600EA-5D1C-79DF-E610-73B652C56FE3}.Release|Any CPU.Build.0 = Release|x64
 		{F16600EA-5D1C-79DF-E610-73B652C56FE3}.Release|x64.ActiveCfg = Release|x64
 		{F16600EA-5D1C-79DF-E610-73B652C56FE3}.Release|x64.Build.0 = Release|x64
-		{FDFF2A85-B3B2-43B3-A62C-E02DFDCEE4BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FDFF2A85-B3B2-43B3-A62C-E02DFDCEE4BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FDFF2A85-B3B2-43B3-A62C-E02DFDCEE4BB}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{FDFF2A85-B3B2-43B3-A62C-E02DFDCEE4BB}.Debug|x64.Build.0 = Debug|Any CPU
-		{FDFF2A85-B3B2-43B3-A62C-E02DFDCEE4BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FDFF2A85-B3B2-43B3-A62C-E02DFDCEE4BB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FDFF2A85-B3B2-43B3-A62C-E02DFDCEE4BB}.Release|x64.ActiveCfg = Release|Any CPU
-		{FDFF2A85-B3B2-43B3-A62C-E02DFDCEE4BB}.Release|x64.Build.0 = Release|Any CPU
+		{77AD2EFF-EA1F-43CF-A90C-9F21AACA128F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77AD2EFF-EA1F-43CF-A90C-9F21AACA128F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77AD2EFF-EA1F-43CF-A90C-9F21AACA128F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{77AD2EFF-EA1F-43CF-A90C-9F21AACA128F}.Debug|x64.Build.0 = Debug|Any CPU
+		{77AD2EFF-EA1F-43CF-A90C-9F21AACA128F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77AD2EFF-EA1F-43CF-A90C-9F21AACA128F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77AD2EFF-EA1F-43CF-A90C-9F21AACA128F}.Release|x64.ActiveCfg = Release|Any CPU
+		{77AD2EFF-EA1F-43CF-A90C-9F21AACA128F}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A3962996-83B2-4B62-A8C2-3BF295878165}
 	EndGlobalSection
 EndGlobal

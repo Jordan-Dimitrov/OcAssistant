@@ -28,9 +28,6 @@
     <Filter Include="src\Headers">
       <UniqueIdentifier>{D89607A6-444C-809B-CD40-7A7239F5769F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Resources">
-      <UniqueIdentifier>{15a75482-a528-4df4-88a4-029f6e182b8e}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="external\glad\include\KHR\khrplatform.h">
@@ -86,13 +83,5 @@
     <ClCompile Include="src\stb.cpp">
       <Filter>src</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="src\Resources\default.frag">
-      <Filter>src\Resources</Filter>
-    </None>
-    <None Include="src\Resources\default.vert">
-      <Filter>src\Resources</Filter>
-    </None>
   </ItemGroup>
 </Project>
