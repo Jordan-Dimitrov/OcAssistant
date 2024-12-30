@@ -10,7 +10,19 @@ namespace fs = std::filesystem;
 #include "Headers/VAO.h"
 #include "Headers/VBO.h"
 #include "Headers/EBO.h"
-#include <chrono>
+#include <vector>
+#include <thread>
+#include <atomic>
+
+void handleCLIInput(std::atomic<bool>& stopFlag) {
+    std::string input;
+    while (!stopFlag) {
+        std::cin >> input;
+        if (input == "stop") {
+            stopFlag = true;
+        }
+    }
+}
 
 GLfloat vertices[] = {
     -0.5f, -0.5f, 0.0f,     1.0f, 0.0f, 0.0f,    0.0f, 0.0f,
@@ -26,14 +38,16 @@ GLuint indices[] = {
 
 int main()
 {
-    glfwInit();
+    std::atomic<bool> stopFlag(false);
 
+    std::thread cliThread(handleCLIInput, std::ref(stopFlag));
+
+    glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     GLFWwindow* window = glfwCreateWindow(1920, 1080, "OcAssistant", NULL, NULL);
-
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -55,31 +69,31 @@ int main()
     VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
     VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float)));
     VAO1.LinkAttrib(VBO1, 2, 2, GL_FLOAT, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+
+    const int instanceCount = 9999999;
+    std::vector<GLfloat> offsets(instanceCount * 2);
+    for (int i = 0; i < instanceCount; ++i)
+    {
+        offsets[2 * i] = (i % 100) * 0.02f - 1.0f;
+        offsets[2 * i + 1] = (i / 100) * 0.02f - 1.0f;
+    }
+
+    VBO VBO2(offsets.data(), offsets.size() * sizeof(GLfloat));
+    VAO1.LinkAttrib(VBO2, 3, 2, GL_FLOAT, 2 * sizeof(float), (void*)0);
+    glVertexAttribDivisor(3, 1);
+
     VAO1.Unbind();
     VBO1.Unbind();
     EBO1.Unbind();
 
     GLuint uniScale = glGetUniformLocation(shaderProgram.ID, "scale");
-    GLuint uniTranslation = glGetUniformLocation(shaderProgram.ID, "translation");
 
     std::string texPath = "src/Resources/";
     Texture ryuk((texPath + "ryuk.png").c_str(), GL_TEXTURE_2D, GL_TEXTURE0, GL_RGB, GL_UNSIGNED_BYTE);
     ryuk.texUnit(shaderProgram, "tex0", 0);
 
-    auto lastTime = std::chrono::high_resolution_clock::now();
-    int frameCount = 0;
-
-    while (!glfwWindowShouldClose(window))
+    while (!glfwWindowShouldClose(window) && !stopFlag)
     {
-        auto currentTime = std::chrono::high_resolution_clock::now();
-        frameCount++;
-        if (std::chrono::duration_cast<std::chrono::seconds>(currentTime - lastTime).count() >= 1.0)
-        {
-            std::cout << "FPS: " << frameCount << std::endl;
-            frameCount = 0;
-            lastTime = currentTime;
-        }
-
         glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
@@ -88,23 +102,18 @@ int main()
         ryuk.Bind();
         VAO1.Bind();
 
-        const int objectCount = 10000000;
-        for (int i = 0; i < objectCount; ++i)
-        {
-            float xOffset = (i % 100) * 0.02f - 1.0f;
-            float yOffset = (i / 100) * 0.02f - 1.0f;
-
-            glUniform2f(uniTranslation, 0, 0);
-
-            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        }
+        glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0, instanceCount);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
 
+    stopFlag = true;
+    cliThread.join();
+
     VAO1.Delete();
     VBO1.Delete();
+    VBO2.Delete();
     EBO1.Delete();
     ryuk.Delete();
     shaderProgram.Delete();
