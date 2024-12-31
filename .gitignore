@@ -404,3 +404,5 @@ FodyWeavers.xsd
 *.vcxproj.filters
 *.vcxproj.user
 *.sln
+
+premake/
