@@ -1,6 +1,6 @@
 # OcAssistant
 ## Overview
-OcAssistant is a tool designed to assist with overclocking Nvidia GPUs. It provides detailed GPU information and has a dedicated GPU benchmark.
+OcAssistant is a tool designed to assist with overclocking Nvidia GPUs.
 
 ## Features
  - GPU information interface
